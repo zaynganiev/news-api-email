@@ -1,9 +1,9 @@
-# Byte-compiled / optimized / DLL files
+# Byte-compiled / optimized files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environment
+# Virtual environments
 venv/
 env/
 ENV/
@@ -21,7 +21,7 @@ ENV/
 # Log files
 *.log
 
-# Test coverage reports
+# Test and coverage reports
 htmlcov/
 .coverage
 .tox/
