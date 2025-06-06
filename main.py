@@ -6,9 +6,12 @@ from datetime import datetime, timedelta
 
 load_dotenv()  # Load variables from .env
 
+# Define the topic for news
+topic = "tesla"
+
 today = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 api_key = os.getenv("NEWS_API_KEY")
-url = f"https://newsapi.org/v2/everything?q=tesla&from={today}&sortBy=publishedAt&apiKey={api_key}"
+url = f"https://newsapi.org/v2/everything?q={topic}&from={today}&sortBy=publishedAt&apiKey={api_key}&language=en"
 print(today)
 
 # Make a request to the News API
@@ -23,9 +26,10 @@ if content.get("status") != "ok":
     print("Error from NewsAPI:", content.get("message"))
 else:
     body = ""
-    for article in content["articles"]:
-        if article["title"]:
-            body += article["title"] + "\n" \
+    for article in content["articles"][:20]:
+        if article["title"] is not None:
+            body = "Subject: Daily News Update" \
+                 + "\n" + body + article["title"] + "\n" \
                  + (article["description"] or "") + "\n" \
                  + article["url"] + "\n\n"
 
